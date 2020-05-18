@@ -115,7 +115,7 @@ class Calculator {
         this.updOperation(
           this.operation.substring(0, this.operation.length - 1)
         );
-      } else if (this.result.length == 1) {
+      } else if (this.result != 0 && this.result.length == 1) {
         this.updResult("0");
         this.updOperation(
           this.operation.substring(0, this.operation.length - 1)
@@ -123,14 +123,16 @@ class Calculator {
       }
       this.state = "writing";
     } else if (button == "CE") {
-      var new_operation = this.operation.substring(
-        0,
-        this.operation.lastIndexOf(this.result)
-      );
-      this.updResult("0");
-      this.updOperation(new_operation);
+      if (this.result != "0") {
+        var new_operation = this.operation.substring(
+          0,
+          this.operation.lastIndexOf(this.result)
+        );
+        this.updResult("0");
+        this.updOperation(new_operation);
 
-      this.state = "writing";
+        this.state = "writing";
+      }
     } else if (button == "C") {
       this.state = "writing";
       this.resetCalc();
