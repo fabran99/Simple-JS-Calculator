@@ -54,7 +54,7 @@ class Calculator {
     if (parsed_result.length > 7) {
       var basic_size = 4;
       var size = basic_size;
-      size = size - 0.35 * (parsed_result.length - 7);
+      size = size - 0.45 * (parsed_result.length - 7);
       console.log(size);
 
       this.resultDiv.style.fontSize = `${size}em`;
@@ -75,6 +75,9 @@ class Calculator {
     // Manejo numeros y puntos
     if (isIn(numbers, button)) {
       if (replace_result) {
+        if (button == "0") {
+          return;
+        }
         if (button == ".") {
           this.updResult(`0.`);
           this.updOperation((this.operation += `0.`));
